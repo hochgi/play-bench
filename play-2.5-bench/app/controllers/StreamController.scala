@@ -115,6 +115,12 @@ class StreamController @Inject()(implicit ec: ExecutionContext, sys: ActorSystem
     p.future
   }
 
+  def async(ignoredSegment: String) = Action.async { implicit request: Request[AnyContent] =>
+    val real = request.getQueryString("real").fold(false)(_ => true)
+    if(real) Future(NoContent)
+    else Future.successful(NoContent)
+  }
+
   def instant(ignoredSegment: String) = Action { implicit request: Request[AnyContent] =>
     val echo = request.getQueryString("echo")
     echo.fold(NoContent)(Ok.apply)

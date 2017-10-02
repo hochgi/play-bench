@@ -16,3 +16,5 @@ GET     /astream/rand               controllers.StreamController.astream()
 GET     /s$ignore<(/[.]*)?>         controllers.StreamController.schedule(ignore: String)
 
 GET     /i$ignore<(/[.]*)?>         controllers.StreamController.instant(ignore: String)
+
+GET     /a$ignore<(/[.]*)?>         controllers.StreamController.async(ignore: String)
